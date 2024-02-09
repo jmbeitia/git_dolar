@@ -10,7 +10,8 @@ def get_dolar_values():
 
         data = response.json()
 
-        table = "```Precios del dolar\n| Casa                     | Compra    | Venta     | Fecha de Actualización       |\n|--------------------------|-----------|-----------|------------------------------|\n"
+        table = "```Precios del dolar\n"
+        table += "| Casa                     | Compra    | Venta     | Fecha de Actualización       |\n|--------------------------|-----------|-----------|------------------------------|\n"
 
         for entry in data:
             casa = entry.get("nombre")
