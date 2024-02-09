@@ -23,12 +23,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Python script to get data
-        id: discord-message
-        run: echo "SCRAPE_DATA=$(python scripts/scrape_data.py)" >> "$GITHUB_OUTPUT"
-
       - name: Send to Discord
         run: python scripts/send_to_discord.py
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_MESSAGE: ${{ steps.discord-message.outputs.SCRAPE_DATA }}

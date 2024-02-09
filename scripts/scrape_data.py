@@ -10,7 +10,20 @@ def get_dolar_values():
 
         data = response.json()
 
-        return data
+        table = "```Precios del dolar\n"
+        table += "| Casa                     | Compra    | Venta     | Fecha de Actualización       |\n|--------------------------|-----------|-----------|------------------------------|\n"
+
+        for entry in data:
+            casa = entry.get("nombre")
+            compra = entry.get("compra")
+            venta = entry.get("venta")
+            fecha_actualizacion = entry.get("fechaActualizacion")
+
+            # Add each row to the table
+            table += f"| {casa:<24} | {compra:<9} | {venta:<9} | {fecha_actualizacion:<28} |\n"
+        
+        table += "```"
+        return table
 
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")

@@ -11,8 +11,15 @@ def send_message(webhook_url, message):
         print(f"Failed to send message. Status code: {response.status_code}")
 
 
-def make_message(data):
-            
+def get_dolar_values():
+    url = "https://dolarapi.com/v1/dolares"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Check for errors in the response
+
+        data = response.json()
+
         table = "```Precios del dolar\n"
         table += "| Casa                     | Compra    | Venta     | Fecha de Actualización       |\n|--------------------------|-----------|-----------|------------------------------|\n"
 
@@ -28,15 +35,13 @@ def make_message(data):
         table += "```"
         return table
 
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return "Unable to fetch Dolar values."
+
 if __name__ == "__main__":
     # Get the scraped data from the environment
-    data = os.environ.get("DISCORD_MESSAGE")
-    
-    if not data:
-        print("Error: No scraped data found.")
-        sys.exit(1)
-
-    message = make_message(data)
+    message = get_dolar_values()
 
     # Get the Discord webhook URL from the environment variable
     webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
