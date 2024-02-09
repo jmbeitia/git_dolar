@@ -9,7 +9,7 @@ def get_dolar_values():
 
         data = response.json()
 
-        table = "```Markdown\n| Casa                    | Compra    | Venta     | Fecha de Actualización       |\n|-------------------------|-----------|-----------|------------------------------|\n"
+        table = "\`\`\`Markdown\n| Casa                    | Compra    | Venta     | Fecha de Actualización       |\n|-------------------------|-----------|-----------|------------------------------|\n"
 
         for entry in data:
             casa = entry.get("nombre")
@@ -20,7 +20,7 @@ def get_dolar_values():
             # Add each row to the table
             table += f"| {casa:<24} | {compra:<9} | {venta:<9} | {fecha_actualizacion:<28} |\n"
 
-        table += "```"
+        table += "\`\`\`"
         return table
 
     except requests.RequestException as e:
