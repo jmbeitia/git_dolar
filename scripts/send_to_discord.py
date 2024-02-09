@@ -29,7 +29,7 @@ def get_dolar_values():
             fecha_actualizacion = entry.get("fechaActualizacion")
 
             # Add each row to the table
-            table += f"| {casa:<24} | {compra:<9} | {venta:<9} | {fecha_actualizacion:<20} |\n"
+            table += f"| {casa:<24} | {compra:<9} | {venta:<9} | {fecha_actualizacion:<28} |\n"
         
         table += "```"
         return table
