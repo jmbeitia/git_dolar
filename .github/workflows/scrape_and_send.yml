@@ -30,3 +30,4 @@ jobs:
         run: python scripts/send_to_discord.py
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_MESSAGE: ${{ env.SCRAPE_DATA }}

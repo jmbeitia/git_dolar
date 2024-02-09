@@ -12,7 +12,7 @@ def send_message(webhook_url, message):
 
 if __name__ == "__main__":
     # Get the scraped data from the environment
-    message = os.environ.get("SCRAPE_DATA")
+    message = os.environ.get("DISCORD_MESSAGE")
     
     if not message:
         print("Error: No scraped data found.")
