@@ -30,6 +30,4 @@ def get_dolar_values():
 if __name__ == "__main__":
     data = get_dolar_values()
 
-    # Now, you can use 'data' as needed, such as sending it to Discord
     print(data)
-    os.environ["SCRAPE_DATA"] = data
