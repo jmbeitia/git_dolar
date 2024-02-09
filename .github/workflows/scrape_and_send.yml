@@ -1,0 +1,32 @@
+name: Scheduled Scraping and Sending to Discord
+
+on:
+  schedule:
+    - cron: '0 11,17 * * *'  # Twice a day at 11 AM and 5 PM UTC
+
+jobs:
+  scrape_and_send:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Python script to get data
+        id: get_data
+        run: |
+          data=$(python scripts/scrape_data.py)
+          echo "::set-output name=scraped_data::$data"
+
+      - name: Send to Discord
+        run: python scripts/send_to_discord.py ${{ steps.get_data.outputs.scraped_data }}
+          env:
+            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
