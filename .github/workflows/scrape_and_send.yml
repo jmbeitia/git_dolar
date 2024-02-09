@@ -25,7 +25,8 @@ jobs:
 
       - name: Run Python script to get data
         run: |
-          echo "SCRAPE_DATA=$(python scripts/scrape_data.py)" >> $GITHUB_ENV
+          scrape_data=$(python scripts/scrape_data.py)
+          echo "SCRAPE_DATA=$scrape_data" >> $GITHUB_ENV
 
       - name: Send to Discord
         run: python scripts/send_to_discord.py
