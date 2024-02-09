@@ -1,4 +1,5 @@
 import requests
+import os
 
 def get_dolar_values():
     url = "https://dolarapi.com/v1/dolares"
@@ -31,3 +32,4 @@ if __name__ == "__main__":
 
     # Now, you can use 'data' as needed, such as sending it to Discord
     print(data)
+    os.environ["SCRAPE_DATA"] = data

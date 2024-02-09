@@ -24,9 +24,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Python script to get data
-        run: |
-          scrape_data=$(python scripts/scrape_data.py)
-          echo "SCRAPE_DATA=$scrape_data" >> $GITHUB_ENV
+        run: python scripts/scrape_data.py
 
       - name: Send to Discord
         run: python scripts/send_to_discord.py
