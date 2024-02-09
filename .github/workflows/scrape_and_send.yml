@@ -29,5 +29,5 @@ jobs:
 
       - name: Send to Discord
         run: python scripts/send_to_discord.py ${{ steps.get_data.outputs.scraped_data }}
-          env:
-            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        env:
+           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
