@@ -11,12 +11,13 @@ def send_message(webhook_url, message):
         print(f"Failed to send message. Status code: {response.status_code}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python send_to_discord.py <message>")
+    # Get the scraped data from the environment
+    message = os.environ.get("SCRAPE_DATA")
+    
+    if not message:
+        print("Error: No scraped data found.")
         sys.exit(1)
 
-    message = sys.argv[1]
-    
     # Get the Discord webhook URL from the environment variable
     webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
     

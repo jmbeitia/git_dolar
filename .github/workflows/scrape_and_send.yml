@@ -24,12 +24,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Python script to get data
-        id: get_data
         run: |
-          data=$(python scripts/scrape_data.py)
-          echo "::set-output name=scraped_data::$data"
+          echo "SCRAPE_DATA=$(python scripts/scrape_data.py)" >> $GITHUB_ENV
 
       - name: Send to Discord
-        run: python scripts/send_to_discord.py ${{ steps.get_data.outputs.scraped_data }}
+        run: python scripts/send_to_discord.py
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
