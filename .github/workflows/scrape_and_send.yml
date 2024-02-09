@@ -25,7 +25,19 @@ jobs:
 
       - name: Run Python script to get data
         id: discord-message
-        run: echo "SCRAPE_DATA=$(python scripts/scrape_data.py)" >> "$GITHUB_OUTPUT"
+        run: |
+          # Run the script and capture the output
+          SCRAPE_DATA=$(python scripts/scrape_data.py)
+
+          # Print the output for debugging purposes
+          echo "SCRAPE_DATA: $SCRAPE_DATA"
+
+          # Enclose the data in triple backticks to indicate Markdown code block
+          echo "SCRAPE_DATA: |
+      \`\`\`
+      $SCRAPE_DATA
+      \`\`\`" >> "$GITHUB_OUTPUT"
+
 
       - name: Send to Discord
         run: python scripts/send_to_discord.py
