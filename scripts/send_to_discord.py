@@ -19,20 +19,19 @@ def get_dolar_values():
         response.raise_for_status()  # Check for errors in the response
 
         data = response.json()
-
-        table = "```| Casa                     | Compra    | Venta     | Fecha de Actualización       |\n|--------------------------|-----------|-----------|------------------------------|\n"
+    
+        message = "```Valores del Dólar\n\n"
 
         for entry in data:
             casa = entry.get("nombre")
             compra = entry.get("compra")
             venta = entry.get("venta")
-            fecha_actualizacion = entry.get("fechaActualizacion")
 
-            # Add each row to the table
-            table += f"| {casa:<24} | {compra:<9} | {venta:<9} | {fecha_actualizacion:<28} |\n"
+            # Add each row to the message
+            message += f"• **{casa}:** Compra: {compra} | Venta: {venta}\n"
+        message += "```"
         
-        table += "```"
-        return table
+        return message
 
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
