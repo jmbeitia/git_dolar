@@ -23,7 +23,7 @@ def get_dolar_values():
         table = "```| Casa                     | Compra    | Venta     |\n|--------------------------|-----------|-----------|\n"
 
         for entry in data:
-            casa = entry.get("nombre")
+            casa = entry.get("nombre")[:35]  # Limitando la descripción a 35 caracteres
             compra = entry.get("compra")
             venta = entry.get("venta")
 
