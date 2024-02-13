@@ -20,18 +20,18 @@ def get_dolar_values():
 
         data = response.json()
     
-        message = "```Valores del Dólar\n\n"
+        table = "```| Casa                     | Compra    | Venta     |\n|--------------------------|-----------|-----------|\n"
 
         for entry in data:
             casa = entry.get("nombre")
             compra = entry.get("compra")
             venta = entry.get("venta")
 
-            # Add each row to the message
-            message += f"• **{casa}:** Compra: {compra} | Venta: {venta}\n"
-        message += "```"
+            # Add each row to the table
+            table += f"| {casa:<24} | {compra:<9} | {venta:<9} |\n"
         
-        return message
+        table += "```"
+        return table
 
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
