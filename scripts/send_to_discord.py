@@ -20,7 +20,7 @@ def get_dolar_values():
 
         data = response.json()
     
-        table = "```| Casa                     | Compra    | Venta     |\n|--------------------------|-----------|-----------|\n"
+        table = "```| Casa       | Compra | Venta  |\n|------------|--------|--------|\n"
 
         for entry in data:
             casa = entry.get("nombre")[:35]  # Limitando la descripción a 35 caracteres
@@ -28,7 +28,7 @@ def get_dolar_values():
             venta = entry.get("venta")
 
             # Add each row to the table
-            table += f"| {casa:<24} | {compra:<9} | {venta:<9} |\n"
+            table += f"| {casa:<10} | {compra:<6} | {venta:<6} |\n"
         
         table += "```"
         return table
