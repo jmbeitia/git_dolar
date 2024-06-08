@@ -44,7 +44,7 @@ def get_dolar_values():
 
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
-        return "Unable to fetch Dolar values."
+        return "Unable to fetch the Dolar values."
 
 
 if __name__ == "__main__":
